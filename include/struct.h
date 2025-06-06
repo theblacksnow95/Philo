@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:22:01 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/06 13:47:05 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/06 16:50:29 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 typedef struct s_mutex
 {
-	int		total_fork;
-	int		status;
-}	t_forks;
+	pthread_mutex_t		mutex;
+	struct s_mutex		*next;
+}	t_mutex;
 
 // struct to store all the philo program arguments.
 //	@param num_of_phil 1 or more
@@ -27,12 +27,12 @@ typedef struct s_mutex
 //	@param [meals_to_have] optional arg in milis, min # of times a phil must eat
 typedef struct s_args
 {
-	int		num_of_phil;
-	int		time_to_eat;
-	int		time_to_die;
-	int		time_to_sleep;
-	int		meals_to_have;
-	t_forks	*forks;
+	int				num_of_phil;
+	suseconds_t		time_to_eat;
+	suseconds_t		time_to_die;
+	suseconds_t		time_to_sleep;
+	suseconds_t		meals_to_have;
+	t_mutex			*mutex;
 
 }	t_args;
 

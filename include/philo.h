@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:03:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/06 13:56:41 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/06 16:36:07 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@
 # include <unistd.h>
 # include "struct.h"
 # include <pthread.h>
+# include <sys/time.h>
 
 int		ft_atoi(const char *str);
 int		is_numeric(char *s);
 int		valid_args(char **arg, int len);
 void	init_philo(t_args *args, char **av, int ac);
 void	print_struct(t_args *args, int ac);
-int		free_all(t_thread *thread);
+int		free_all(t_thread *thread, t_args *args);
 
 #endif
