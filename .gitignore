@@ -4,6 +4,9 @@
 # unignore all the extentions
 !*.*
 
+# unignore all directories
+!*/
+
 # Prerequisites
 *.d
 

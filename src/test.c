@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/31 16:03:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/06 13:56:41 by emurillo         ###   ########.fr       */
+/*   Created: 2025/06/06 12:18:18 by emurillo          #+#    #+#             */
+/*   Updated: 2025/06/06 12:59:09 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
+#include "philo.h"
 
-# define PHILO_H
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include "struct.h"
-# include <pthread.h>
+// int	main(int ac, char **av)
+// {
+// 	t_args	*args;
 
-int		ft_atoi(const char *str);
-int		is_numeric(char *s);
-int		valid_args(char **arg, int len);
-void	init_philo(t_args *args, char **av, int ac);
-void	print_struct(t_args *args, int ac);
-int		free_all(t_thread *thread);
+// 	if ((ac < 5 || ac > 6) || !valid_args(av, ac))
+// 		return (printf("Error: non valid args\n"), 1);
+// 	args = malloc(sizeof(t_args));
+// 	if (!args)
+// 		return (printf("Error: malloc allocation\n"), 1);
+// 	init_philo(args, av, ac);
+// 	print_struct(args, ac);
+// 	free(args);
+// 	return (0);
+// }
 
-#endif
+

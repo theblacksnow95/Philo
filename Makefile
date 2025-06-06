@@ -6,7 +6,7 @@ NAME = philo
 
 CC = gcc
 
-C_FLAGS = -Wall -Wextra -Werror -g
+C_FLAGS = -Wall -Wextra -Werror -g -lpthread
 
 ## ============================ DIRECTORIES ==================================== ##
 
@@ -20,7 +20,7 @@ OBJ_DIR = obj
 
 ## ============================ SOURCES ======================================= ##
 
-SRC = $(SRC_DIR)/philo.c $(SRC_DIR)/utils.c
+SRC = $(SRC_DIR)/philo.c $(SRC_DIR)/utils.c $(SRC_DIR)/test.c $(SRC_DIR)/free_exit.c
 
 TARGET = philo
 
@@ -49,7 +49,7 @@ fclean: clean
 	rm -rf $(BIN_DIR)
 
 test:
-	./$(BIN_DIR)/$(TARGET) 2 3 4 5 6
+	./$(BIN_DIR)/$(TARGET) 6 3 4 5 6
 
 re: fclean all
 

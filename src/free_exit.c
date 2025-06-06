@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   free_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/31 16:03:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/06 13:56:41 by emurillo         ###   ########.fr       */
+/*   Created: 2025/06/06 13:47:52 by emurillo          #+#    #+#             */
+/*   Updated: 2025/06/06 13:56:15 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
+#include "philo.h"
 
-# define PHILO_H
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include "struct.h"
-# include <pthread.h>
 
-int		ft_atoi(const char *str);
-int		is_numeric(char *s);
-int		valid_args(char **arg, int len);
-void	init_philo(t_args *args, char **av, int ac);
-void	print_struct(t_args *args, int ac);
-int		free_all(t_thread *thread);
-
-#endif
+int	free_all(t_thread *thread)
+{
+	if (!thread ||!thread->thread)
+		return (0);
+	free(thread->thread);
+	free(thread);
+	return (0);
+}
