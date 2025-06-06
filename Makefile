@@ -47,7 +47,7 @@ clean:
 
 fclean: clean
 	rm -rf $(BIN_DIR)
-	
+
 test:
 	./$(BIN_DIR)/$(TARGET) 2 3 4 5 6
 
