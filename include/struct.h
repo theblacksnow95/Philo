@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:22:01 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/06 16:50:29 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/07 12:07:55 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ typedef struct s_mutex
 typedef struct s_args
 {
 	int				num_of_phil;
-	suseconds_t		time_to_eat;
-	suseconds_t		time_to_die;
-	suseconds_t		time_to_sleep;
-	suseconds_t		meals_to_have;
+	size_t			time_to_eat;
+	size_t			time_to_die;
+	size_t			time_to_sleep;
+	size_t			meals_to_have;
 	t_mutex			*mutex;
 
 }	t_args;

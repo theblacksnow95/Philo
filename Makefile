@@ -49,7 +49,7 @@ fclean: clean
 	rm -rf $(BIN_DIR)
 
 test:
-	./$(BIN_DIR)/$(TARGET) 6 3 4 5 6
+	./$(BIN_DIR)/$(TARGET) 6 300 455 533 6
 
 re: fclean all
 

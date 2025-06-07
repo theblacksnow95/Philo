@@ -6,33 +6,40 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:03:12 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/06 17:52:41 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/07 12:39:42 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-size_t	get_current_time()
+size_t	get_current_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		printf("gettimeofdat() errror\n");
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
 
 void	*test(void *args)
 {
 	pthread_t		thread_id;
 	t_args			times;
-	struct timeval	start;
-	struct timeval	stop;
+	size_t			stop;
 
-	gettimeofday(&start, NULL);
-	gettimeofday(&stop, NULL);
+	stop = get_current_time();
 	times = *(t_args *)args;
 	thread_id = pthread_self();
-	while ((start.tv_usec - stop.tv_usec) < times.time_to_eat)
+	if ((get_current_time() - stop) < times.time_to_eat)
 	{
+		printf("stop: %ld\n", stop);
+		printf("eat :%ld\n", times.time_to_eat);
 		printf("Philosopher %ld is eating\n", thread_id);
 	}
-	if ((start.tv_usec - stop.tv_usec) > times.time_to_die)
+	if ((get_current_time() - stop) == times.time_to_die)
 	{
 		printf("philosopher %ld died\n", thread_id);
-		return
+		return (NULL);
 	}
 	printf("Current thread ID: %lu\n", (unsigned long)thread_id);
 	usleep(20000);
