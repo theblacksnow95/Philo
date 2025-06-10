@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:22:01 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/07 12:07:55 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:13:16 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,21 @@ typedef struct s_mutex
 typedef struct s_args
 {
 	int				num_of_phil;
-	size_t			time_to_eat;
-	size_t			time_to_die;
-	size_t			time_to_sleep;
-	size_t			meals_to_have;
+	int				time_to_eat;
+	int				time_to_die;
+	int				time_to_sleep;
+	int				meals_to_have;
 	t_mutex			*mutex;
 
 }	t_args;
 
 typedef struct s_threads
 {
-	pthread_t	*thread;
-	pthread_t	*id;
+	pthread_t		*thread;
+	pthread_t		*id;
 
 }			t_thread;
+
 
 #endif
 

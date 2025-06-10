@@ -20,7 +20,8 @@ OBJ_DIR = obj
 
 ## ============================ SOURCES ======================================= ##
 
-SRC = $(SRC_DIR)/philo.c $(SRC_DIR)/utils.c $(SRC_DIR)/test.c $(SRC_DIR)/free_exit.c
+SRC = $(SRC_DIR)/philo.c $(SRC_DIR)/utils.c $(SRC_DIR)/test.c $(SRC_DIR)/free_exit.c \
+	$(SRC_DIR)/utils_2.c
 
 TARGET = philo
 

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_exit.c                                        :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 13:47:52 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/10 16:00:58 by emurillo         ###   ########.fr       */
+/*   Created: 2025/06/10 15:09:35 by emurillo          #+#    #+#             */
+/*   Updated: 2025/06/10 16:04:57 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 
-int	free_all(t_thread *thread, t_args *args)
+size_t	get_current_time(void)
 {
-	if (!thread ||!thread->thread || !args)
-		return (1);
-	free(thread->thread);
-	free(thread);
-	return (0);
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		printf("gettimeofdat() errror\n");
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
