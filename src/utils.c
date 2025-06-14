@@ -6,17 +6,26 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:09:35 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/10 15:51:46 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/14 18:55:23 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
 void	init_philo(t_args *args, char **av, int ac)
 {
 	args->num_of_phil = ft_atoi(av[1]);
 	args->time_to_die = ft_atoi(av[2]);
-
 	args->time_to_eat = ft_atoi(av[3]);
 	args->time_to_sleep = ft_atoi(av[4]);
 	if (ac == 6)
@@ -31,12 +40,12 @@ void	print_struct(t_args *args, int ac)
 	printf("Struct contains the next values.\n");
 	if (ac == 6)
 	{
-		printf("N: [%d], die: [%d] eat:[%d], sleep[%d], meals: [%d]\n",
+		printf("N: [%d], die: [%ld] eat:[%ld], sleep[%ld], meals: [%d]\n",
 			args->num_of_phil, args->time_to_die, args->time_to_eat, \
 			args->time_to_sleep, args->meals_to_have);
 	}
 	else
-		printf("N: [%d], die: [%d] eat:[%d], sleep[%d]\n",
+		printf("N: [%d], die: [%ld] eat:[%ld], sleep[%ld]\n",
 			args->num_of_phil, args->time_to_die, args->time_to_eat, \
 			args->time_to_sleep);
 }
@@ -50,6 +59,8 @@ int	valid_args(char **arg, int len)
 	{
 		puts(arg[i]);
 		usleep(300000);
+		if (i > 1 && i < 5 && ft_strlen(arg[i]) < 2)
+			return (0);
 		if (!is_numeric(arg[i]))
 			return (0);
 		i++;

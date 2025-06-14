@@ -6,13 +6,19 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:22:01 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/10 16:13:16 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/14 16:14:39 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 
 # define STRUCT_H
+
+
+typedef struct s_timer
+{
+	size_t	start;
+}	t_timer;
 
 typedef struct s_mutex
 {
@@ -28,9 +34,9 @@ typedef struct s_mutex
 typedef struct s_args
 {
 	int				num_of_phil;
-	int				time_to_eat;
-	int				time_to_die;
-	int				time_to_sleep;
+	size_t				time_to_eat;
+	size_t				time_to_die;
+	size_t				time_to_sleep;
 	int				meals_to_have;
 	t_mutex			*mutex;
 
@@ -39,7 +45,11 @@ typedef struct s_args
 typedef struct s_threads
 {
 	pthread_t		*thread;
+	int				n;
 	pthread_t		*id;
+	t_args			*args;
+	t_timer			timer;
+
 
 }			t_thread;
 

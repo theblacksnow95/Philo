@@ -52,6 +52,9 @@ fclean: clean
 test:
 	./$(BIN_DIR)/$(TARGET) 6 300 455 533 6
 
+valgrind:
+	valgrind --leak-check=full ./$(BIN_DIR)/$(TARGET) 6 300 455 533 6
+
 re: fclean all
 
 .PHONY: all clean fclean re
