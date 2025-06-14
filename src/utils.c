@@ -6,11 +6,14 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:09:35 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/14 18:55:23 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/14 19:58:59 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	valid_args(char **arg, int len);
+int	is_numeric(char *s);
 
 int	ft_strlen(char *s)
 {
@@ -30,6 +33,12 @@ void	init_philo(t_args *args, char **av, int ac)
 	args->time_to_sleep = ft_atoi(av[4]);
 	if (ac == 6)
 		args->meals_to_have = ft_atoi(av[5]);
+	else if (args->time_to_eat < 60 || args->time_to_sleep < 60 ||
+		args->time_to_die < 60)
+	{
+		error_exit("Time should be more than 60 ms");
+		return ;
+	}
 	if (args->time_to_eat
 		&& args->time_to_die && args->time_to_sleep)
 		printf("struct init correctly\n");
@@ -83,6 +92,7 @@ int	is_numeric(char *s)
 	}
 	return (1);
 }
+
 
 int	ft_atoi(const char *str)
 {

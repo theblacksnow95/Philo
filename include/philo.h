@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:03:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/14 18:52:30 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/14 19:47:56 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <limits.h>
 
 int		ft_atoi(const char *str);
-int		is_numeric(char *s);
+int		error_exit(char *error);
 int		valid_args(char **arg, int len);
 void	init_philo(t_args *args, char **av, int ac);
 void	print_struct(t_args *args, int ac);
