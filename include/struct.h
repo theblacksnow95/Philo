@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:22:01 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/14 16:14:39 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/17 16:56:45 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,26 @@
 
 # define STRUCT_H
 
+typedef struct s_threads t_thread;
+
+typedef enum e_codes
+{
+	ERROR_0,
+	E_NON_NUMERIC,
+	E_INT_MAX,
+	E_MIN_MS,
+} t_code;
 
 typedef struct s_timer
 {
 	size_t	start;
 }	t_timer;
 
-typedef struct s_mutex
+typedef struct s_fork
 {
-	pthread_mutex_t		mutex;
-	struct s_mutex		*next;
-}	t_mutex;
+	pthread_mutex_t	*fork;
+	int				fork_id;
+}	t_fork;
 
 // struct to store all the philo program arguments.
 //	@param num_of_phil 1 or more
@@ -33,22 +42,26 @@ typedef struct s_mutex
 //	@param [meals_to_have] optional arg in milis, min # of times a phil must eat
 typedef struct s_args
 {
-	int				num_of_phil;
-	size_t				time_to_eat;
-	size_t				time_to_die;
-	size_t				time_to_sleep;
-	int				meals_to_have;
-	t_mutex			*mutex;
+	long			num_of_phil;
+	long			time_to_eat;
+	long			time_to_die;
+	long			time_to_sleep;
+	long			meals_to_have;
+	t_fork			*mutex;
+	t_thread		*threads;
 
 }	t_args;
 
 typedef struct s_threads
 {
-	pthread_t		*thread;
 	int				n;
+	long			last_meal;
+	t_fork			right_fork;
+	t_fork			left_fork;
+	pthread_t		*thread;
 	pthread_t		*id;
-	t_args			*args;
 	t_timer			timer;
+	t_args			*args;
 
 
 }			t_thread;

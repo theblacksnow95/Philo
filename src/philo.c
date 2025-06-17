@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:03:12 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/14 19:59:43 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:35:07 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,20 @@ void	*test(void *args)
 	start = ((t_thread *)args)->timer.start;
 	times = ((t_thread *)args)->args;
 	thread_id = ((t_thread *)args)->n;
-	if (timer(start) >= times->time_to_die)
+	if ((long)timer(start) >= times->time_to_die)
 	{
 		printf("philosopher %d died\n", thread_id);
 		return (NULL);
 	}
-	if (timer(start) < times->time_to_eat)
+	if ((long)timer(start) < times->time_to_eat)
 	{
 		printf("start: %ld\n", timer(start));
-		usleep(times->time_to_eat);
 		printf("eat :%ld\n", times->time_to_eat);
+		usleep(times->time_to_eat * 1000);
 		printf("%ld %d is eating\n",get_current_time() - start, thread_id);
 		((t_thread*)args)->timer.start = get_current_time();
 	}
 	printf("Current thread : %d\n\n", thread_id);
-	usleep(20000);
-	pthread_exit(NULL);
 	return (NULL);
 }
 
@@ -46,8 +44,10 @@ int	main(int ac, char **av)
 	t_thread		*thread;
 	int				i;
 
-	if ((ac < 5 || ac > 6) || !valid_args(av, ac))
-		return (printf("Error: non valid args\n"), 1);
+	if ((ac < 5 || ac > 6))
+		return (error_exit("Error: Invalid args", ERROR_0), 1);
+	if (!valid_args(av, ac))
+		return (1);
 	args = safe_malloc(sizeof(t_args));
 	init_philo(args, av, ac);
 	i = 0;

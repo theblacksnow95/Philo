@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:03:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/14 19:47:56 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/17 13:36:47 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <limits.h>
 
 int		ft_atoi(const char *str);
-int		error_exit(char *error);
+int 	error_exit(char *error, t_code error_code);
 int		valid_args(char **arg, int len);
 void	init_philo(t_args *args, char **av, int ac);
 void	print_struct(t_args *args, int ac);
@@ -30,5 +30,6 @@ int		free_all(t_thread *thread, t_args *args);
 size_t	get_current_time(void);
 size_t	timer(size_t start);
 void	*safe_malloc(size_t bytes);
+long	ft_atol(const char *str);
 
 #endif
