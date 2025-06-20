@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:31:52 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/20 18:28:57 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:42:42 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,14 @@ void	*test(void *args)
 	t_args			*times;
 	size_t			start;
 
-	start = ((t_thread *)args)->timer.start;
+	start = ((t_args *)args)->threads->timer.start;
 	times = ((t_args *)args);
 	thread_id = ((t_args *)args)->threads->n;
 	wait_all_threads((t_args *)args);
-	usleep(10000);
 	if (timer(start) >= (size_t)times->time_to_die)
 	{
 		printf("philosopher %d died\n", thread_id);
-		printf("start: %ld\n", get_current_time() - start);
+		printf("start: %ld\n", start);
 		printf("eat :%ld\n", times->time_to_eat);
 		return (NULL);
 	}
@@ -41,7 +40,7 @@ void	*test(void *args)
 		printf("start: %ld\n", get_current_time() - start);
 		printf("eat :%ld\n", times->time_to_eat);
 		usleep(times->time_to_eat * 1000);
-		printf("%ld %d is eating\n", get_current_time() - start, thread_id);
+		printf("%ld %d is eating\n", timer(start), thread_id);
 		((t_thread *)args)->timer.start = get_current_time();
 	}
 	printf("Current thread : %d\n\n", thread_id);
