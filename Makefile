@@ -21,7 +21,7 @@ OBJ_DIR = obj
 ## ============================ SOURCES ======================================= ##
 
 SRC = $(SRC_DIR)/philo.c $(SRC_DIR)/utils.c $(SRC_DIR)/test.c $(SRC_DIR)/free_exit.c \
-	$(SRC_DIR)/utils_2.c
+	$(SRC_DIR)/utils_2.c $(SRC_DIR)/init.c $(SRC_DIR)/simulation.c
 
 TARGET = philo
 
@@ -54,6 +54,7 @@ test:
 
 valgrind:
 	valgrind --leak-check=full ./$(BIN_DIR)/$(TARGET) 6 300 455 533 6
+
 
 re: fclean all
 

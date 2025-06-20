@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:22:01 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/17 16:56:45 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:44:51 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define STRUCT_H
 
-typedef struct s_threads t_thread;
+typedef struct s_threads	t_thread;
 
 typedef enum e_codes
 {
@@ -22,7 +22,8 @@ typedef enum e_codes
 	E_NON_NUMERIC,
 	E_INT_MAX,
 	E_MIN_MS,
-} t_code;
+	E_FREE,
+}	t_code;
 
 typedef struct s_timer
 {
@@ -47,6 +48,7 @@ typedef struct s_args
 	long			time_to_die;
 	long			time_to_sleep;
 	long			meals_to_have;
+	int				all_created;
 	t_fork			*mutex;
 	t_thread		*threads;
 
@@ -58,7 +60,6 @@ typedef struct s_threads
 	long			last_meal;
 	t_fork			right_fork;
 	t_fork			left_fork;
-	pthread_t		*thread;
 	pthread_t		*id;
 	t_timer			timer;
 	t_args			*args;
