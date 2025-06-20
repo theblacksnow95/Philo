@@ -6,11 +6,12 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:20:29 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/20 16:54:08 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:11:16 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
 
 static int	init_threads(t_args *args)
 {
@@ -20,6 +21,7 @@ static int	init_threads(t_args *args)
 	args->threads->args = args;
 	args->threads->timer.start = get_current_time();
 	args->all_created = 0;
+	args->threads->args = args;
 	return (0);
 }
 

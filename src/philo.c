@@ -6,13 +6,11 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:03:12 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/20 15:11:15 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:12:07 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-
 
 int	main(int ac, char **av)
 {

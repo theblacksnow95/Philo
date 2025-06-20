@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:31:52 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/20 17:11:06 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:28:57 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 void	wait_all_threads(t_args *args)
 {
-	while (1)
-	{
-		if (args->all_created)
-			break ;
-	}
+	while (!args->all_created)
+		;
 }
 
 void	*test(void *args)
@@ -31,15 +28,17 @@ void	*test(void *args)
 	times = ((t_args *)args);
 	thread_id = ((t_args *)args)->threads->n;
 	wait_all_threads((t_args *)args);
-	if (get_current_time() - start >= (size_t)times->time_to_die)
+	usleep(10000);
+	if (timer(start) >= (size_t)times->time_to_die)
 	{
 		printf("philosopher %d died\n", thread_id);
-		printf("start: %ld\n", start - get_current_time());
+		printf("start: %ld\n", get_current_time() - start);
+		printf("eat :%ld\n", times->time_to_eat);
 		return (NULL);
 	}
-	if (get_current_time() - start < (size_t)times->time_to_eat)
+	if (timer(start) < (size_t)times->time_to_eat)
 	{
-		printf("start: %ld\n", start);
+		printf("start: %ld\n", get_current_time() - start);
 		printf("eat :%ld\n", times->time_to_eat);
 		usleep(times->time_to_eat * 1000);
 		printf("%ld %d is eating\n", get_current_time() - start, thread_id);
