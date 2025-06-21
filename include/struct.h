@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:22:01 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/20 18:41:34 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/21 17:22:20 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_timer
 
 typedef struct s_fork
 {
-	pthread_mutex_t	*fork;
+	pthread_mutex_t	fork;
 	int				fork_id;
 }	t_fork;
 
@@ -51,6 +51,7 @@ typedef struct s_args
 	int				all_created;
 	t_fork			*mutex;
 	t_thread		*threads;
+	t_timer			timer;
 
 }	t_args;
 
@@ -58,10 +59,11 @@ typedef struct s_threads
 {
 	int				n;
 	long			last_meal;
-	t_fork			right_fork;
-	t_fork			left_fork;
-	pthread_t		*id;
-	t_timer			timer;
+	int				full;
+	int				n_meals;
+	t_fork			*right_fork;
+	t_fork			*left_fork;
+	pthread_t		id;
 	t_args			*args;
 
 
