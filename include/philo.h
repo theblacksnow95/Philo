@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:03:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/21 14:21:01 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/24 11:31:03 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ size_t	timer(size_t start);
 void	*safe_malloc(size_t bytes);
 long	ft_atol(const char *str);
 int		start_simulation(t_args *args);
+void	mili_sleep(long	mlsecs);
+int		lock_forks(t_thread *philo);
+int		unlock_forks(t_thread *philo);
 
 #endif

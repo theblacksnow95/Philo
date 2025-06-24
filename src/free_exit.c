@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:47:52 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/20 15:09:03 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/24 11:27:49 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	error_exit(char *error, t_code error_code)
 		return (printf("Error: %s\n", error), 0);
 	if (error_code == E_FREE)
 		return (printf("Error: %s\n", error), 0);
+	if (error_code == E_LOCK)
+		return (printf("Error: %s\n", error), 0);
 	return (0);
 }
 
@@ -29,7 +31,6 @@ int	free_all(t_args *args)
 {
 	if (!args)
 		return (error_exit("Error at free review free", E_FREE));
-	free(args->threads->id);
 	free(args->threads);
 	return (0);
 }

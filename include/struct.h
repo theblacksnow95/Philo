@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:22:01 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/21 17:22:20 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/24 11:27:11 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef enum e_codes
 	E_INT_MAX,
 	E_MIN_MS,
 	E_FREE,
+	E_LOCK,
 }	t_code;
 
 typedef struct s_timer

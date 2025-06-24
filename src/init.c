@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:20:29 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/21 18:39:29 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/24 10:44:54 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ static void	init_mutex(t_args *args)
 	int	i;
 
 	i = 0;
-	if (i < args->num_of_phil)
+	while (i < args->num_of_phil)
 	{
 		pthread_mutex_init(&args->mutex[i].fork, NULL);
-		args->mutex->fork_id = i;
+		args->mutex[i].fork_id = i + 1;
 		i++;
 	}
 	printf("mutex done\n");
@@ -73,6 +73,8 @@ void	data_init(t_args *args, char **av, int ac)
 	args->all_created = 0;
 	init_mutex(args);
 	init_threads(args);
+	if (ac == 5)
+		args->meals_to_have = -1;
 	if (ac == 6)
 		args->meals_to_have = ft_atol(av[5]);
 	if (args->time_to_eat
