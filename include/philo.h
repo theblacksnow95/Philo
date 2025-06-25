@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:03:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/25 15:49:14 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/25 16:54:12 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ int		lock_forks(t_thread *philo);
 int		unlock_forks(t_thread *philo);
 int		mutex_lock(t_fork mutex);
 int		mutex_unlock(t_fork mutex);
-void	write_status(t_args *args, int n, t_wrcds stat_code);
+void	write_status(t_thread *philo, int n, t_wrcds stat_code);
 
 #endif

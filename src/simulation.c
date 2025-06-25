@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:31:52 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/25 15:48:56 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/25 16:57:54 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,13 @@ void	eat_routine(t_thread *philos, t_args *args)
 {
 	lock_forks(philos);
 	mili_sleep(args->time_to_eat);
-	write_status(args, philos->n, EAT);
+	write_status(philos, philos->n, EAT);
 	philos->n_meals++;
 	if (philos->n_meals == args->meals_to_have)
-		philos->full = 1;
+		philos->full = 0;
 	printf("meals had: %d\n", philos->n_meals);
-
 	unlock_forks(philos);
 }
-
 
 void	*test(void *phil)
 {
@@ -45,9 +43,10 @@ void	*test(void *phil)
 		usleep(philos->n * 200);
 	while (!args->dinner_end)
 	{
-		if (philos->full)
+		if (!philos->full)
 			return (NULL);
 		eat_routine(philos, args);
+		write_status(philos, philos->n, SLEEPING);
 		mili_sleep(args->time_to_sleep);
 	}
 	return (NULL);

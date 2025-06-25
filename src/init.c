@@ -6,12 +6,11 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:20:29 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/25 12:11:39 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/25 16:43:25 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
 
 static void	assign_forks(t_thread *philo, t_fork *forks, int pos)
 {
@@ -53,7 +52,7 @@ static int	init_threads(t_args *args)
 	{
 		philo = &args->threads[i];
 		philo->n = i + 1;
-		philo->full = 0;
+		philo->full = 1;
 		philo->args = args;
 		philo->n_meals = 0;
 		philo->last_meal = 0;

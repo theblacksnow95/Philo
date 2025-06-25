@@ -6,13 +6,13 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:09:35 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/25 14:44:19 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/25 16:39:52 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	mili_sleep(long	mlsecs)
+void	mili_sleep(long mlsecs)
 {
 	int	usecs;
 

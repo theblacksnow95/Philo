@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:22:01 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/25 12:11:07 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/25 16:42:11 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ typedef enum e_write
 	TAKE_RIGHT_FORK,
 	RET_LEFT_FORK,
 	RET_RIGHT_FORK,
-} t_wrcds;
-
+}	t_wrcds;
 
 typedef struct s_timer
 {
@@ -80,10 +79,6 @@ typedef struct s_threads
 	t_fork			*left_fork;
 	pthread_t		id;
 	t_args			*args;
-
-
 }			t_thread;
 
-
 #endif
-

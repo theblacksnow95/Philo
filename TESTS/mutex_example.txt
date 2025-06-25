@@ -1,14 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mutex_example.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/31 15:13:28 by emurillo          #+#    #+#             */
-/*   Updated: 2025/05/31 15:53:14 by emurillo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    mutex_example.txt                                  :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/05/31 15:13:28 by emurillo          #+#    #+#              #
+#    Updated: 2025/06/25 16:41:19 by emurillo         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 #include <unistd.h>
 #include <stdio.h>
@@ -23,7 +23,7 @@ typedef struct s_mutex
 
 
 // the initial balance is 0
-int	balance = 0;
+// int	balance = 0;
 
 // write the new balance (after as simulated 1/4 second delay)
 void	write_balance(int new_balance)
