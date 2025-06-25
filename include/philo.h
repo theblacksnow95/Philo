@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:03:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/24 11:31:03 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/24 23:33:52 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,8 @@ int		start_simulation(t_args *args);
 void	mili_sleep(long	mlsecs);
 int		lock_forks(t_thread *philo);
 int		unlock_forks(t_thread *philo);
+int		mutex_lock(t_fork mutex);
+int		mutex_unlock(t_fork mutex);
+void	write_status(t_args *args, t_wrcds stat_code);
 
 #endif

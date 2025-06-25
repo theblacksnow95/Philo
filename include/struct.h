@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:22:01 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/24 11:27:11 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:11:07 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,18 @@ typedef enum e_codes
 	E_FREE,
 	E_LOCK,
 }	t_code;
+
+typedef enum e_write
+{
+	EAT,
+	SLEEPING,
+	DIED,
+	TAKE_LEFT_FORK,
+	TAKE_RIGHT_FORK,
+	RET_LEFT_FORK,
+	RET_RIGHT_FORK,
+} t_wrcds;
+
 
 typedef struct s_timer
 {
@@ -50,7 +62,9 @@ typedef struct s_args
 	long			time_to_sleep;
 	long			meals_to_have;
 	int				all_created;
+	int				dinner_end;
 	t_fork			*mutex;
+	t_fork			write;
 	t_thread		*threads;
 	t_timer			timer;
 
