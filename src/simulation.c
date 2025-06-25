@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:31:52 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/25 12:12:54 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:48:56 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,39 @@ void	wait_all_threads(t_args *args)
 	while (args->all_created != 1)
 		;
 }
+
 void	eat_routine(t_thread *philos, t_args *args)
 {
-		lock_forks(philos);
-		mili_sleep(args->time_to_eat);
-		write_status(args, EAT);
-		unlock_forks(philos);
+	lock_forks(philos);
+	mili_sleep(args->time_to_eat);
+	write_status(args, philos->n, EAT);
+	philos->n_meals++;
+	if (philos->n_meals == args->meals_to_have)
+		philos->full = 1;
+	printf("meals had: %d\n", philos->n_meals);
+
+	unlock_forks(philos);
 }
 
 
 void	*test(void *phil)
 {
-	int				thread_id;
 	t_args			*args;
 	t_thread		*philos;
 
+	wait_all_threads(((t_thread *)phil)->args);
 	printf("enter test func\n");
 	args = ((t_thread *)phil)->args;
-	wait_all_threads(args);
 	philos = (t_thread *)phil;
-	thread_id = ((t_thread *)phil)->n;
+	if (philos->n % 2 == 0)
+		usleep(philos->n * 200);
 	while (!args->dinner_end)
 	{
+		if (philos->full)
+			return (NULL);
 		eat_routine(philos, args);
-		write_status(args, SLEEPING);
 		mili_sleep(args->time_to_sleep);
 	}
-	printf("Current thread : %d\n\n", thread_id);
 	return (NULL);
 }
 
@@ -57,8 +63,8 @@ int	start_simulation(t_args *args)
 	printf("Start sim\n");
 	while (i < args->num_of_phil)
 	{
-		pthread_create(&args->threads[i].id, NULL, test, (void *)args->threads);
-		printf("thread (%d) created\n", i + 1);
+		pthread_create(&args->threads[i].id, \
+			NULL, test, &args->threads[i]);
 		i++;
 	}
 	args->timer.start = get_current_time();
