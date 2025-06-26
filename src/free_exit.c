@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:47:52 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/26 11:53:21 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/26 18:36:10 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int	free_all(t_args *args)
 	if (!args)
 		return (error_exit("Error at free review free", E_FREE));
 	free(args->threads);
+	free(args->mutex);
 	return (0);
 }

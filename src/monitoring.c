@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 11:47:17 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/26 18:12:12 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/26 18:33:57 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	*monitor_routine(void *data)
 		usleep(70);
 	while (!args->dinner_end)
 	{
+		if (args->threads->full)
+			break ;
 		i = 0;
 		while (i < args->num_of_phil && !args->dinner_end)
 		{
@@ -76,6 +78,6 @@ void	*monitor_routine(void *data)
 void	monitoring(t_args *args)
 {
 	printf("entered monitoring\n");
-	if(pthread_create(&args->monitor, NULL, monitor_routine, (void *)args) == -1)
+	if (pthread_create(&args->monitor, NULL, monitor_routine, (void *)args) == -1)
 		error_exit("thread creation", E_THREAD);
 }

@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:31:52 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/26 18:06:20 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/26 18:28:13 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ int	start_simulation(t_args *args)
 		pthread_join(args->threads[i].id, NULL);
 		i++;
 	}
+	pthread_join(args->monitor, NULL);
 	return (0);
 }
