@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:20:29 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/25 16:43:25 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/26 15:25:26 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ static void	init_mutex(t_args *args)
 		args->mutex[i].fork_id = i + 1;
 		i++;
 	}
-	pthread_mutex_init(&args->write.fork, NULL);
-	args->write.fork_id = 1;
+	pthread_mutex_init(&args->write.mutex, NULL);
+	args->write.mutex_id = 1;
+	pthread_mutex_init(&args->smtx.mutex, NULL);
+	args->smtx.mutex_id = 1;
 	printf("mutex done\n");
 }
 
@@ -52,7 +54,7 @@ static int	init_threads(t_args *args)
 	{
 		philo = &args->threads[i];
 		philo->n = i + 1;
-		philo->full = 1;
+		philo->full = 0;
 		philo->args = args;
 		philo->n_meals = 0;
 		philo->last_meal = 0;
@@ -72,6 +74,7 @@ void	data_init(t_args *args, char **av, int ac)
 	args->threads = safe_malloc(sizeof(t_thread) * args->num_of_phil);
 	args->mutex = safe_malloc(sizeof(t_fork) * args->num_of_phil);
 	args->all_created = 0;
+	args->all_running = 0;
 	args->dinner_end = 0;
 	init_mutex(args);
 	init_threads(args);

@@ -22,7 +22,7 @@ OBJ_DIR = obj
 
 SRC = $(SRC_DIR)/philo.c $(SRC_DIR)/utils.c $(SRC_DIR)/test.c $(SRC_DIR)/free_exit.c \
 	$(SRC_DIR)/utils_2.c $(SRC_DIR)/init.c $(SRC_DIR)/simulation.c $(SRC_DIR)/mutex_handle.c \
-	$(SRC_DIR)/status.c
+	$(SRC_DIR)/status.c $(SRC_DIR)/monitoring.c
 
 TARGET = philo
 
@@ -51,10 +51,10 @@ fclean: clean
 	rm -rf $(BIN_DIR)
 
 test:
-	./$(BIN_DIR)/$(TARGET) 6 500 400 533 6
+	./$(BIN_DIR)/$(TARGET) 6 800 200 200 1
 
 valgrind:
-	valgrind --leak-check=full ./$(BIN_DIR)/$(TARGET) 6 300 455 533 6
+	valgrind --leak-check=full ./$(BIN_DIR)/$(TARGET) 6 300 455 533 3
 
 
 re: fclean all

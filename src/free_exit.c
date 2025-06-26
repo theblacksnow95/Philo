@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:47:52 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/24 11:27:49 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/26 11:53:21 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	error_exit(char *error, t_code error_code)
 	if (error_code == E_FREE)
 		return (printf("Error: %s\n", error), 0);
 	if (error_code == E_LOCK)
+		return (printf("Error: %s\n", error), 0);
+	if (error_code == E_THREAD)
 		return (printf("Error: %s\n", error), 0);
 	return (0);
 }
