@@ -6,77 +6,68 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:31:52 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/26 18:28:13 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/27 15:26:54 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_wrcds	check_all_created(t_args *args)
+void	think_routine(t_thread *philo, t_args *args)
 {
-	mutex_lock(args->smtx);
-	if (args->all_created == 1)
-		return (TRUE);
-	mutex_unlock(args->smtx);
-	return (FALSE);
+	long	think_time;
+
+	write_status(philo, philo->n, THINK);
+	if (args->num_of_phil % 2 == 0)
+		return ;
+	else
+	{
+		if (philo->last_meal == 0)
+			return ;
+		think_time = (args->time_to_eat * 2 - args->time_to_sleep);
+		if (think_time <= 0)
+			think_time = 0;
+		mili_sleep(think_time * 0.42);
+	}
 }
 
-void	set_all_created(t_args *args)
-{
-	mutex_lock(args->smtx);
-	args->all_created = 1;
-	mutex_unlock(args->smtx);
-}
+	// printf("meals had: %d\n", philos->n_meals);
 
-void	set_running(t_args *args, int *value)
+void	eat_routine(t_thread *philo, t_args *args)
 {
-	mutex_lock(args->smtx);
-	*value = *value + 1;
-	printf("value running %d\n", *value);
-	mutex_unlock(args->smtx);
-}
-
-void	wait_all_threads(t_args *args)
-{
-	while (check_all_created(args) == FALSE)
-		usleep(10);
-}
-
-void	eat_routine(t_thread *philos, t_args *args)
-{
-	lock_forks(philos);
-	philos->last_meal = get_current_time();
+	lock_forks(philo);
+	set_last_meal(philo);
+	write_status(philo, philo->n, EAT);
 	mili_sleep(args->time_to_eat);
-	write_status(philos, philos->n, EAT);
-	philos->n_meals++;
-	if (philos->args->meals_to_have > 0 &&
-		philos->n_meals == args->meals_to_have)
-		philos->full = 1;
-	printf("meals had: %d\n", philos->n_meals);
-	unlock_forks(philos);
+	philo->n_meals++;
+	if (philo->args->meals_to_have > 0 && \
+		philo->n_meals == args->meals_to_have)
+		philo->full = 1;
+	unlock_forks(philo);
 }
 
-void	*test(void *data)
+void	*simulation_routine(void *data)
 {
 	t_args			*args;
-	t_thread		*philos;
+	t_thread		*philo;
 
 	wait_all_threads(((t_thread *)data)->args);
 	args = ((t_thread *)data)->args;
-	philos = (t_thread *)data;
-	printf("enter test func\n");
-	philos->last_meal = get_current_time();
+	philo = (t_thread *)data;
+	philo->last_meal = get_current_time();
 	set_running(args, &args->all_running);
 	usleep(20);
-	if (philos->n % 2 == 0)
-		usleep(philos->n * 200);
+	if (args->num_of_phil == 1)
+		single_routine(philo, args);
+	if (philo->n % 2 == 0)
+		usleep(philo->n * 200);
 	while (!args->dinner_end)
 	{
-		if (philos->full)
+		if (philo->full)
 			break ;
-		eat_routine(philos, args);
-		write_status(philos, philos->n, SLEEPING);
+		eat_routine(philo, args);
+		write_status(philo, philo->n, SLEEPING);
 		mili_sleep(args->time_to_sleep);
+		think_routine(philo, args);
 	}
 	return (NULL);
 }
@@ -88,16 +79,14 @@ int	start_simulation(t_args *args)
 	i = 0;
 	if (args->meals_to_have == 0)
 		return (0);
-	printf("Start sim\n");
 	while (i < args->num_of_phil)
 	{
 		pthread_create(&args->threads[i].id, \
-			NULL, test, &args->threads[i]);
+			NULL, simulation_routine, &args->threads[i]);
 		i++;
 	}
 	monitoring(args);
 	args->timer.start = get_current_time();
-	printf("%ld\n", args->timer.start);
 	set_all_created(args);
 	i = 0;
 	while (i < args->num_of_phil)

@@ -6,11 +6,18 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 11:47:17 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/26 18:33:57 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/27 14:13:51 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+/*
+	for debug the time to die inside check_philo_died;
+			printf("last meal: %ld\n", philo->last_meal);
+		printf("died at: %ld\n", get_current_time());
+		printf("time passed: %ld\n", stop);
+*/
 
 void	set_dinner_end(t_args *args)
 {
@@ -39,22 +46,17 @@ int	check_philo_died(t_thread *philo)
 	die_spam = philo->args->time_to_die;
 	if (stop > die_spam)
 	{
-		printf("last meal: %ld\n", philo->last_meal);
-		printf("died at: %ld\n", get_current_time());
-		printf("time passed: %ld\n", stop);
 		return (1);
 	}
 	return (0);
 }
 
-
 void	*monitor_routine(void *data)
 {
-	int	i;
+	int		i;
 	t_args	*args;
 
 	args = (t_args *)data;
-	printf("value all running: %d\n", args->all_running);
 	while (all_running(args) == FALSE)
 		usleep(70);
 	while (!args->dinner_end)
@@ -75,9 +77,10 @@ void	*monitor_routine(void *data)
 	}
 	return (NULL);
 }
+
 void	monitoring(t_args *args)
 {
-	printf("entered monitoring\n");
-	if (pthread_create(&args->monitor, NULL, monitor_routine, (void *)args) == -1)
+	if (pthread_create(&args->monitor, NULL, monitor_routine, (void *)args)
+		== -1)
 		error_exit("thread creation", E_THREAD);
 }

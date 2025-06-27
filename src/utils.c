@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:09:35 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/20 14:20:53 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/27 14:12:41 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,17 @@ int	valid_args(char **arg, int len)
 	i = 1;
 	while (i < len)
 	{
-		puts(arg[i]);
-		usleep(300000);
 		if (!is_numeric(arg[i]))
 			return (error_exit("non numeric.", E_NON_NUMERIC));
 		if (ft_strlen(arg[i]) >= 10)
 			if (ft_atol(arg[i]) == -1)
-				return (error_exit("Error: invalid > INT_MAX.", E_INT_MAX));
+				return (error_exit("invalid > INT_MAX.", E_INT_MAX));
 		if (i > 1 && i < 5 && ft_strlen(arg[i]) < 2)
-			return (error_exit("Error: min 60ms input.", E_MIN_MS));
+			return (error_exit("min 60ms input.", E_MIN_MS));
 		if (i > 1 && i < 5 && ft_strlen(arg[i]) == 2)
 		{
 			if (ft_atol(arg[i]) < 60)
-				return (error_exit("Error: value 60ms input.", E_MIN_MS));
+				return (error_exit("min 60ms input.", E_MIN_MS));
 		}
 		i++;
 	}

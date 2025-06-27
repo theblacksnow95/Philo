@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:47:52 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/26 18:36:10 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/27 14:10:54 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,26 @@ int	error_exit(char *error, t_code error_code)
 	return (0);
 }
 
+/*
+	@brief function used to free all the structs and mutexes at the exit.
+	it will destroy the mutexes even if we do not need to as they are
+	POSIX functions that do not allocate memory.
+
+	@param t_args* args: pointer to arguments used that will be freed.
+*/
 int	free_all(t_args *args)
 {
+	int	i;
+
+	i = 0;
 	if (!args)
 		return (error_exit("Error at free review free", E_FREE));
+	while (i < args->num_of_phil)
+	{
+		pthread_mutex_destroy(&args->mutex[i].fork);
+		i++;
+	}
+	pthread_mutex_destroy(&args->mutex->fork);
 	free(args->threads);
 	free(args->mutex);
 	return (0);

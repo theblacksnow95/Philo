@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:22:01 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/26 18:02:36 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:43:13 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef enum e_write
 	EAT,
 	SLEEPING,
 	DIED,
+	THINK,
 	TAKE_LEFT_FORK,
 	TAKE_RIGHT_FORK,
 	RET_LEFT_FORK,

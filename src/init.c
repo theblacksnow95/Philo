@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:20:29 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/26 15:25:26 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/27 14:13:26 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static void	init_mutex(t_args *args)
 	args->write.mutex_id = 1;
 	pthread_mutex_init(&args->smtx.mutex, NULL);
 	args->smtx.mutex_id = 1;
-	printf("mutex done\n");
 }
 
 static int	init_threads(t_args *args)
@@ -61,7 +60,6 @@ static int	init_threads(t_args *args)
 		assign_forks(philo, args->mutex, i);
 		i++;
 	}
-	printf("philos done\n");
 	return (0);
 }
 
@@ -82,7 +80,4 @@ void	data_init(t_args *args, char **av, int ac)
 		args->meals_to_have = -1;
 	if (ac == 6)
 		args->meals_to_have = ft_atol(av[5]);
-	if (args->time_to_eat
-		&& args->time_to_die && args->time_to_sleep)
-		printf("struct init correctly\n");
 }

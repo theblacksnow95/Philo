@@ -22,7 +22,7 @@ OBJ_DIR = obj
 
 SRC = $(SRC_DIR)/philo.c $(SRC_DIR)/utils.c $(SRC_DIR)/test.c $(SRC_DIR)/free_exit.c \
 	$(SRC_DIR)/utils_2.c $(SRC_DIR)/init.c $(SRC_DIR)/simulation.c $(SRC_DIR)/mutex_handle.c \
-	$(SRC_DIR)/status.c $(SRC_DIR)/monitoring.c
+	$(SRC_DIR)/status.c $(SRC_DIR)/monitoring.c $(SRC_DIR)/single_philo.c $(SRC_DIR)/sim_utils.c
 
 TARGET = philo
 
@@ -50,12 +50,29 @@ clean:
 fclean: clean
 	rm -rf $(BIN_DIR)
 
+1philo:
+	./$(BIN_DIR)/$(TARGET) 1 800 200 200
+
+2philo:
+	./$(BIN_DIR)/$(TARGET) 2 800 200 200
+
+die2philo:
+	./$(BIN_DIR)/$(TARGET) 2 310 200 100
+
+2full:
+	./$(BIN_DIR)/$(TARGET) 2 800 200 200 7 > full.txt && cat full.txt | grep eating > eat_sum.txt
+	cat eat_sum.txt | grep eating
+	cat eat_sum.txt | grep eating | wc -l
+
+
 test:
-	./$(BIN_DIR)/$(TARGET) 6 800 200 200 1
+	./$(BIN_DIR)/$(TARGET) 6 800 200 200 5 > file.txt
+	cat file.txt | grep eating
+	cat file.txt | grep eating | wc -l
 
 valgrind:
-	valgrind --leak-check=full ./$(BIN_DIR)/$(TARGET) 6 300 455 533 3
-
+	valgrind --leak-check=full ./$(BIN_DIR)/$(TARGET) 5 800 200 200 7 > file2.txt && cat file2.txt | grep "eating" > eat_sum.txt && cat eat_sum.txt
+	cat eat_sum.txt | wc -l
 
 re: fclean all
 
