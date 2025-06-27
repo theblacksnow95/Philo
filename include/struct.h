@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:22:01 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/27 10:43:13 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:22:24 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_args
 	long			meals_to_have;
 	int				all_created;
 	int				all_running;
+	int				count_running;
 	int				dinner_end;
 	t_fork			*mutex;
 	t_mutex			write;

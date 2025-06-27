@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:20:29 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/27 14:13:26 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:22:45 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	data_init(t_args *args, char **av, int ac)
 	args->mutex = safe_malloc(sizeof(t_fork) * args->num_of_phil);
 	args->all_created = 0;
 	args->all_running = 0;
+	args->count_running = 0;
 	args->dinner_end = 0;
 	init_mutex(args);
 	init_threads(args);

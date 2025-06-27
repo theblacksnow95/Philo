@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 11:47:17 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/27 14:13:51 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:24:37 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ void	set_dinner_end(t_args *args)
 t_wrcds	all_running(t_args *args)
 {
 	mutex_lock(args->smtx);
-	if (args->all_running == (int)args->num_of_phil)
+	if (args->count_running == (int)args->num_of_phil)
+	{
+		args->all_running = 1;
 		return (TRUE);
+	}
 	mutex_unlock(args->smtx);
 	return (FALSE);
 }
