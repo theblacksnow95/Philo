@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:31:52 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/27 18:31:48 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/30 19:14:28 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	think_routine(t_thread *philo, t_args *args)
 	write_status(philo, philo->n, THINK);
 	if (args->num_of_phil % 2 == 0)
 	{
-		mili_sleep(10);
+		mili_sleep(2);
 		return ;
 	}
 	else
@@ -29,7 +29,7 @@ void	think_routine(t_thread *philo, t_args *args)
 		think_time = (args->time_to_eat * 2 - args->time_to_sleep);
 		if (think_time <= 0)
 			think_time = 0;
-		mili_sleep(think_time * 0.45);
+		mili_sleep(think_time * 0.42);
 	}
 }
 

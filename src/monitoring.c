@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 11:47:17 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/27 18:24:37 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/30 19:21:10 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_wrcds	all_running(t_args *args)
 	if (args->count_running == (int)args->num_of_phil)
 	{
 		args->all_running = 1;
+		mutex_unlock(args->smtx);
 		return (TRUE);
 	}
 	mutex_unlock(args->smtx);

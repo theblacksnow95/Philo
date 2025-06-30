@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:47:52 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/27 14:10:54 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/06/30 18:59:48 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	free_all(t_args *args)
 		pthread_mutex_destroy(&args->mutex[i].fork);
 		i++;
 	}
-	pthread_mutex_destroy(&args->mutex->fork);
+	pthread_mutex_destroy(&args->smtx.mutex);
 	free(args->threads);
 	free(args->mutex);
 	return (0);
