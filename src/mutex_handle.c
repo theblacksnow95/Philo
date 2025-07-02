@@ -6,22 +6,22 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 11:23:36 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/27 11:34:55 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/07/02 15:22:51 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	mutex_lock(t_mutex mutex)
+int	mutex_lock(t_mutex *mutex)
 {
-	if (pthread_mutex_lock(&mutex.mutex) == -1)
+	if (pthread_mutex_lock(&mutex->mutex) == -1)
 		return (error_exit("lock mutex", E_LOCK), 1);
 	return (0);
 }
 
-int	mutex_unlock(t_mutex mutex)
+int	mutex_unlock(t_mutex *mutex)
 {
-	if (pthread_mutex_unlock(&mutex.mutex) == -1)
+	if (pthread_mutex_unlock(&mutex->mutex) == -1)
 		return (error_exit("unlock mutex", E_LOCK), 1);
 	return (0);
 }

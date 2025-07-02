@@ -6,11 +6,13 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:03:12 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/27 14:12:54 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/07/02 15:27:49 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+// valgrind --tool=helgrind --log-file=valg_out2.log ./bin/philo 2 800 200 200 2
 
 /*
 @brief This program checks for valid arguments, and starts a philo simulation.

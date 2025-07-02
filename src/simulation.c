@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:31:52 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/30 19:14:28 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:52:47 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	think_routine(t_thread *philo, t_args *args)
 	write_status(philo, philo->n, THINK);
 	if (args->num_of_phil % 2 == 0)
 	{
-		mili_sleep(2);
+		mili_sleep(1);
 		return ;
 	}
 	else
@@ -41,10 +41,10 @@ void	eat_routine(t_thread *philo, t_args *args)
 	set_last_meal(philo);
 	write_status(philo, philo->n, EAT);
 	mili_sleep(args->time_to_eat);
-	philo->n_meals++;
+	incr_meals(philo, &philo->n_meals);
 	if (philo->args->meals_to_have > 0 && \
 		philo->n_meals == args->meals_to_have)
-		philo->full = 1;
+		set_full(philo);
 	unlock_forks(philo);
 }
 
@@ -63,7 +63,7 @@ void	*simulation_routine(void *data)
 		single_routine(philo, args);
 	if (philo->n % 2 == 0)
 		usleep(philo->n * 200);
-	while (!args->dinner_end)
+	while (!has_ended(philo))
 	{
 		if (philo->full)
 			break ;

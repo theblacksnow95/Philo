@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:03:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/27 15:26:22 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:43:02 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,26 @@ void		mili_sleep(long mlsecs);
 
 void		*safe_malloc(size_t bytes);
 int			start_simulation(t_args *args);
+
 int			lock_forks(t_thread *philo);
 int			unlock_forks(t_thread *philo);
-int			mutex_lock(t_mutex mutex);
-int			mutex_unlock(t_mutex mutex);
+
+int			mutex_lock(t_mutex *mutex);
+int			mutex_unlock(t_mutex *mutex);
+
 void		write_status(t_thread *philo, int n, t_wrcds stat_code);
 void		wait_all_threads(t_args *args);
 void		wait_all_threads(t_args *args);
 t_wrcds		check_all_created(t_args *args);
+
 void		set_all_created(t_args *args);
 void		set_running(t_args *args, int *value);
 void		set_last_meal(t_thread *philo);
+void		set_full(t_thread *philo);
+void		incr_meals(t_thread *philo, int *value);
+
+long		get_long(t_thread *philo, long *value);
+int			has_ended(t_thread *philo);
 
 // monitoring function to check when they die
 

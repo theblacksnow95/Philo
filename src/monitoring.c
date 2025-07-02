@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 11:47:17 by emurillo          #+#    #+#             */
-/*   Updated: 2025/06/30 19:21:10 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:49:28 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@
 
 void	set_dinner_end(t_args *args)
 {
-	mutex_lock(args->smtx);
+	mutex_lock(&args->smtx);
 	args->dinner_end = 1;
-	mutex_unlock(args->smtx);
+	mutex_unlock(&args->smtx);
 }
 
 t_wrcds	all_running(t_args *args)
 {
-	mutex_lock(args->smtx);
+	mutex_lock(&args->smtx);
 	if (args->count_running == (int)args->num_of_phil)
 	{
 		args->all_running = 1;
-		mutex_unlock(args->smtx);
+		mutex_unlock(&args->smtx);
 		return (TRUE);
 	}
-	mutex_unlock(args->smtx);
+	mutex_unlock(&args->smtx);
 	return (FALSE);
 }
 
@@ -43,10 +43,12 @@ int	check_philo_died(t_thread *philo)
 {
 	long	stop;
 	long	die_spam;
+	long	last_meal;
 
-	if (philo->full)
+	if ((int)get_long(philo, (long *)&philo->full))
 		return (0);
-	stop = get_current_time() - (size_t)philo->last_meal;
+	last_meal = get_long(philo, &philo->last_meal);
+	stop = get_current_time() - last_meal;
 	die_spam = philo->args->time_to_die;
 	if (stop > die_spam)
 	{
@@ -63,9 +65,9 @@ void	*monitor_routine(void *data)
 	args = (t_args *)data;
 	while (all_running(args) == FALSE)
 		usleep(70);
-	while (!args->dinner_end)
+	while (!has_ended(args->threads))
 	{
-		if (args->threads->full)
+		if ((int)get_long(args->threads, (long *)&args->threads->full))
 			break ;
 		i = 0;
 		while (i < args->num_of_phil && !args->dinner_end)

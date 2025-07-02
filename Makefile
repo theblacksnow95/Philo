@@ -20,7 +20,7 @@ OBJ_DIR = obj
 
 ## ============================ SOURCES ======================================= ##
 
-SRC = $(SRC_DIR)/philo.c $(SRC_DIR)/utils.c $(SRC_DIR)/test.c $(SRC_DIR)/free_exit.c \
+SRC = $(SRC_DIR)/philo.c $(SRC_DIR)/utils.c $(SRC_DIR)/mutex_access.c $(SRC_DIR)/free_exit.c \
 	$(SRC_DIR)/utils_2.c $(SRC_DIR)/init.c $(SRC_DIR)/simulation.c $(SRC_DIR)/mutex_handle.c \
 	$(SRC_DIR)/status.c $(SRC_DIR)/monitoring.c $(SRC_DIR)/single_philo.c $(SRC_DIR)/sim_utils.c
 
