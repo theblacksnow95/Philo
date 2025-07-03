@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:03:48 by emurillo          #+#    #+#             */
-/*   Updated: 2025/07/02 16:41:48 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:22:12 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,12 @@ void	incr_meals(t_thread *philo, int *value)
 	mutex_lock(&philo->args->smtx);
 	*value = *value + 1;
 	mutex_unlock(&philo->args->smtx);
+}
+
+void set_timer(t_args *args)
+{
+	mutex_lock(&args->smtx);
+	args->timer.start = timer(args->timer.start);
+	mutex_unlock(&args->smtx);
+
 }

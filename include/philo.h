@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 16:03:54 by emurillo          #+#    #+#             */
-/*   Updated: 2025/07/02 16:43:02 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:21:34 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void		incr_meals(t_thread *philo, int *value);
 
 long		get_long(t_thread *philo, long *value);
 int			has_ended(t_thread *philo);
+void		set_timer(t_args *args);
 
 // monitoring function to check when they die
 

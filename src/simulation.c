@@ -6,7 +6,7 @@
 /*   By: emurillo <emurillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:31:52 by emurillo          #+#    #+#             */
-/*   Updated: 2025/07/02 16:52:47 by emurillo         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:21:43 by emurillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int	start_simulation(t_args *args)
 		i++;
 	}
 	monitoring(args);
-	args->timer.start = get_current_time();
 	set_all_created(args);
+	set_timer(args);
 	i = 0;
 	while (i < args->num_of_phil)
 	{
